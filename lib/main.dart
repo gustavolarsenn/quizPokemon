@@ -1,3 +1,5 @@
+import 'dart:js_util';
+
 import 'state_machine.dart';
 import 'package:flutter/material.dart';
 
@@ -40,13 +42,13 @@ class _DiabetesHelperPageState extends State<DiabetesHelperPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Expanded(
+        Expanded(
           flex: 5,
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'Texto do estado',
+                stateMachine.getStateText(), //'Texto do estado',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -63,9 +65,13 @@ class _DiabetesHelperPageState extends State<DiabetesHelperPage> {
               style: TextButton.styleFrom(
                 backgroundColor: Colors.blue,
               ),
-              onPressed: () {},
-              child: const Text(
-                'Texto do Botão 1',
+              onPressed: () {
+                setState(() {
+                  stateMachine.checkChoice(true);
+                });
+              },
+              child: Text(
+                stateMachine.getChoice1(), //'Texto do Botão 1',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
@@ -77,16 +83,23 @@ class _DiabetesHelperPageState extends State<DiabetesHelperPage> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.red,
-              ),
-              onPressed: () {},
-              child: const Text(
-                'Texto do Botão 2',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
+            child: Visibility(
+              visible: stateMachine.getChoice2() != null,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.red,
+                ),
+                onPressed: () {
+                  setState(() {
+                    stateMachine.checkChoice(false);
+                  });
+                },
+                child: Text(
+                  stateMachine.getChoice2() ?? "", //'Texto do Botão 2',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
                 ),
               ),
             ),
