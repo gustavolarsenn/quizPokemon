@@ -1,24 +1,45 @@
-import 'dart:js_util';
-
-import 'state_machine.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_pokemon/screens/home.dart';
 
 void main() {
-  runApp(const DiabetesHelper());
+  runApp(const MainApp());
 }
 
-class DiabetesHelper extends StatelessWidget {
-  const DiabetesHelper({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      routes: {
+        '/': (context) => const HomeScreen(),
+      },
+      initialRoute: '/',
+    );
+  }
+}
+
+// import 'package:flutter/material.dart';
+
+/* void main() {
+  runApp(const PokemonQuizApp());
+}
+
+class PokemonQuizApp extends StatelessWidget {
+  const PokemonQuizApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.grey.shade900,
-        body: const SafeArea(
+        appBar: AppBar(
+          title: const Text('Pokemon Quiz'),
+        ),
+        body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child: DiabetesHelperPage(),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: PokemonQuizPage(),
           ),
         ),
       ),
@@ -26,16 +47,14 @@ class DiabetesHelper extends StatelessWidget {
   }
 }
 
-class DiabetesHelperPage extends StatefulWidget {
-  const DiabetesHelperPage({super.key});
+class PokemonQuizPage extends StatefulWidget {
+  const PokemonQuizPage({Key? key}) : super(key: key);
 
   @override
-  State<DiabetesHelperPage> createState() => _DiabetesHelperPageState();
+  State<PokemonQuizPage> createState() => _PokemonQuizPageState();
 }
 
-class _DiabetesHelperPageState extends State<DiabetesHelperPage> {
-  StateMachine stateMachine = StateMachine();
-
+class _PokemonQuizPageState extends State<PokemonQuizPage> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,34 +64,21 @@ class _DiabetesHelperPageState extends State<DiabetesHelperPage> {
         Expanded(
           flex: 5,
           child: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Center(
-              child: Text(
-                stateMachine.getStateText(), //'Texto do estado',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            padding: const EdgeInsets.all(10.0),
           ),
         ),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.blue,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                padding: const EdgeInsets.all(12.0),
               ),
-              onPressed: () {
-                setState(() {
-                  stateMachine.checkChoice(true);
-                });
-              },
+              onPressed: () {},
               child: Text(
-                stateMachine.getChoice1(), //'Texto do Botão 1',
-                style: TextStyle(
+                'Bulbasaur',
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
                 ),
@@ -83,23 +89,61 @@ class _DiabetesHelperPageState extends State<DiabetesHelperPage> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Visibility(
-              visible: stateMachine.getChoice2() != null,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.red,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                padding: const EdgeInsets.all(12.0),
+              ),
+              onPressed: () {
+                // Lógica para verificar a resposta
+                print('Resposta 2 selecionada');
+              },
+              child: Text(
+                'Charmander',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
                 ),
-                onPressed: () {
-                  setState(() {
-                    stateMachine.checkChoice(false);
-                  });
-                },
-                child: Text(
-                  stateMachine.getChoice2() ?? "", //'Texto do Botão 2',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                  ),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                padding: const EdgeInsets.all(12.0),
+              ),
+              onPressed: () {
+                // Lógica para verificar a resposta
+                print('Resposta 3 selecionada');
+              },
+              child: Text(
+                'Squirtle',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                padding: const EdgeInsets.all(12.0),
+              ),
+              onPressed: () {},
+              child: Text(
+                'Pikachu',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
                 ),
               ),
             ),
@@ -109,3 +153,4 @@ class _DiabetesHelperPageState extends State<DiabetesHelperPage> {
     );
   }
 }
+ */
